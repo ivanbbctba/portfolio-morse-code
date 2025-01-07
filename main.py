@@ -1,60 +1,79 @@
 """
 Simple Morse Code Converter (Text -> Morse).
 
-Features (Current):
+Features:
   1. Displays an ASCII art welcome banner at startup.
-  2. Prompts the user for text input repeatedly.
-  3. Converts the input text to Morse code.
-     - Uses a hard-coded word separator ('/').
-     - Unknown characters are replaced by '???'.
-  4. Prints the result, along with a common Morse prosign (... -.-) for end of contact.
-  5. Continues until the user chooses to quit.
-  6. Displays a goodbye ASCII art message upon exit.
-
-TODO (Future Enhancements):
-  - Implement reverse conversion (Morse -> Text).
+  2. Lets the user choose one of two modes each time:
+       - Text -> Morse
+       - Morse -> Text
+  3. Prompts the user for input repeatedly.
+  4. Converts the input using either:
+       - string_to_morse (with hard-coded '/' separator and ??? for unknown chars), or
+       - morse_to_string (with the same defaults).
+  5. Prints the result, with a special note for text->Morse (... -.-).
+  6. Continues until the user chooses to quit.
+  7. Displays a goodbye ASCII art message upon exit.
 
 """
 
 from morse_code_converter.ascii_art import AsciiArt
 from morse_code_converter.morse_code import MorseCodeConverter
 
+
 def main():
     """
     Main entry point of the application. Coordinates:
       - Welcome ASCII art
-      - Input loop for text
-      - Conversion to Morse
+      - Mode selection (Text->Morse or Morse->Text)
+      - Conversion
       - Printing the result
       - Goodbye ASCII art
-
-    TODO: Integrate an optional reverse mode in a future commit.
     """
     # 1. Display a welcome ASCII art banner
     AsciiArt.display_welcome_art()
 
     while True:
-        # 2. Prompt for user input (text)
-        user_text = input("Type your message here: ").strip()
+        # Ask the user which conversion mode they want
+        mode = input(
+            "Which conversion do you want? "
+            "[T] for Text -> Morse, [M] for Morse -> Text: "
+        ).strip().lower()
 
-        # 3. Convert from text to Morse (no argparse; hard-coded defaults)
-        morse = MorseCodeConverter.string_to_morse(
-            input_string=user_text,
-            word_separator="/",      # Hard-coded word separator
-            unknown_strategy="???"   # Replace unrecognized chars with ???
-        )
+        if mode == "t":
+            # TEXT -> MORSE
+            user_text = input("\nType your message here: ").strip()
+            converted = MorseCodeConverter.string_to_morse(
+                input_string=user_text,
+                word_separator="/",       # Hard-coded word separator
+                unknown_strategy="???"    # Replace unrecognized chars with ???
+            )
+            print("\nConversion Result (Text -> Morse):")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(converted)
+            print("... -.- (SK)")  # Prosign indicating end of communication
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-        # 4. Print the Morse code result
-        print("\nConversion Result:")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print(morse)
-        print("... -.- (SK)")  # Prosign indicating end of communication
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+        elif mode == "m":
+            # MORSE -> TEXT
+            user_morse = input("\nType your Morse code here: ").strip()
+            converted = MorseCodeConverter.morse_to_string(
+                morse_code=user_morse,
+                word_separator="/",       # Same word separator
+                unknown_strategy="???"    # Replace unrecognized patterns with ???
+            )
+            print("\nConversion Result (Morse -> Text):")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(converted)
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-        # 5. Ask if the user wants to continue
-        again = input("Do you want to convert another message? (y/n): ").strip().lower()
+        else:
+            print("Invalid option. Please type 'T' or 'M'.\n")
+            continue  # Ask again without dropping into the exit prompt
+
+        # Ask if the user wants to continue
+        again = input("Do you want to do another conversion? (y/n): ").strip().lower()
         if again not in ["y", "yes"]:
-            # 6. Display a goodbye ASCII art message and exit
+            # Display a goodbye ASCII art message and exit
             AsciiArt.display_goodbye_art()
             break
 
