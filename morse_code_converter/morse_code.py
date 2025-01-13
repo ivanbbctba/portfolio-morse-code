@@ -11,6 +11,7 @@ logging.basicConfig(
     format='[%(levelname)s] %(message)s'
 )
 
+
 class MorseCodeConverter:
     """
     A class-based Morse Code Converter with:
@@ -39,9 +40,9 @@ class MorseCodeConverter:
 
     @staticmethod
     def string_to_morse(
-        input_string: str,
-        word_separator: str = '/',
-        unknown_strategy: str = '???'
+            input_string: str,
+            word_separator: str = '/',
+            unknown_strategy: str = '???'
     ) -> str:
         """
         Converts a string to Morse code.
@@ -71,9 +72,9 @@ class MorseCodeConverter:
 
     @staticmethod
     def morse_to_string(
-        morse_code: str,
-        word_separator: str = '/',
-        unknown_strategy: str = '???'
+            morse_code: str,
+            word_separator: str = '/',
+            unknown_strategy: str = '???'
     ) -> str:
         """
         Converts Morse code back to a text string.

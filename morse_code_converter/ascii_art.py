@@ -11,7 +11,7 @@ class AsciiArt:
     @staticmethod
     def display_welcome_art():
         """
-        Displays a quirky welcome banner that says "LET's MORSE."
+        Displays a quirky welcome banner that says "let us MORSE."
         """
         print(r"""
  /$$       /$$$$$$$$ /$$$$$$$$ /$$ /$$$$$$        /$$      /$$  /$$$$$$  /$$$$$$$   /$$$$$$  /$$$$$$$$

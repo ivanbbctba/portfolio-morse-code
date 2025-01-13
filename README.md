@@ -66,6 +66,19 @@ You’ll see ASCII art at startup and a goodbye ASCII art message when you choos
 python -m unittest discover tests
 ```
 
+## Linting
+
+This project uses [flake8](https://github.com/PyCQA/flake8) to ensure the code adheres to [PEP 8](https://peps.python.org/pep-0008/) style guidelines. 
+GitHub Actions automatically runs flake8 whenever you push or open a pull request against `main` or `dev`.
+
+### Running flake8 locally
+
+If you want to check your code style locally before committing:
+```bash
+pip install flake8
+flake8 .
+```
+
 ## Project Structure
 ```bash
 portfolio-morse-code/
