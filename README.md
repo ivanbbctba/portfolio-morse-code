@@ -40,7 +40,8 @@ We use [Pipenv](https://pipenv.pypa.io/en/latest/) for environment management, e
 
 2. **Install** using Pipenv:
    ```bash
-   Since there are no external dependencies, this step just sets up a virtual environment with your current Python interpreter.
+   pip install pipenv
+   pipenv install --dev
    ```
    
 3. **Activate** the virtual environment:
@@ -62,6 +63,7 @@ Repeat until you choose to exit.
 You’ll see ASCII art at startup and a goodbye ASCII art message when you choose to exit.
 
 ## Testing
+This project uses Python's built-in unittest module for testing, enhanced with the parameterized library to avoid repetitive code and improve readability.
 ```bash
 python -m unittest discover tests
 ```
