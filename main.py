@@ -16,7 +16,7 @@ Features:
 
 """
 
-from morse_code_converter.ascii_art import AsciiArt
+from gui.ascii_art import AsciiArt
 from morse_code_converter.morse_code import MorseCodeConverter
 
 

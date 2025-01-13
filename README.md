@@ -85,9 +85,11 @@ portfolio-morse-code/
 ├── .github/
 │   └── workflows/
 │       └── python-tests.yml       # GitHub Actions for automated tests
-├── morse_code_converter/          # Python package
+├── gui/                           # Python package
 │   ├── __init__.py
 │   ├── ascii_art.py               # ASCII art functionality
+├── morse_code_converter/          # Python package
+│   ├── __init__.py
 │   └── morse_code.py              # Morse conversion logic
 ├── tests/
 │   ├── __init__.py
