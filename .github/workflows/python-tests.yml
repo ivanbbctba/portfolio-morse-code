@@ -23,4 +23,9 @@ jobs:
       # 3. Run tests
       - name: Run tests
         run: |
-          python -m unittest discover tests
+          python -m unittest discover -s tests -p "*_test.py"
+
+      # 4. Debugging
+      - name: Show project files
+        run: |
+          ls -R
