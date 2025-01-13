@@ -8,7 +8,7 @@ Features:
        - Morse -> Text
   3. Prompts the user for input repeatedly.
   4. Converts the input using either:
-       - string_to_morse (with hard-coded '/' separator and ??? for unknown chars), or
+       - string_to_morse (with default '/' separator and ??? for unknown chars), or
        - morse_to_string (with the same defaults).
   5. Prints the result, with a special note for text->Morse (... -.-).
   6. Continues until the user chooses to quit.
@@ -44,8 +44,6 @@ def main():
             user_text = input("\nType your message here: ").strip()
             converted = MorseCodeConverter.string_to_morse(
                 input_string=user_text,
-                word_separator="/",       # Hard-coded word separator
-                unknown_strategy="???"    # Replace unrecognized chars with ???
             )
             print("\nConversion Result (Text -> Morse):")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -58,8 +56,6 @@ def main():
             user_morse = input("\nType your Morse code here: ").strip()
             converted = MorseCodeConverter.morse_to_string(
                 morse_code=user_morse,
-                word_separator="/",       # Same word separator
-                unknown_strategy="???"    # Replace unrecognized patterns with ???
             )
             print("\nConversion Result (Morse -> Text):")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
